@@ -38,12 +38,12 @@ for i in range(n):
     ahead.pop(0)
     declaration = prisoner_action(i, dead, declared, ahead)
     declared.append(declaration)
-    dead.append(declaration == prisoners[i])
+    dead.append(declaration != prisoners[i])
     if (declaration != prisoners[i]):
         num_dead += 1
 
 print('Out of {0} prisoners, you killed {1}.'.format(n, num_dead))
-if (num_dead > 1):
+if (num_dead > 1 or (True in dead[1:])):
     print('You can do better than that!')
 else:
     print('Great job! You found the right algorithm!')
