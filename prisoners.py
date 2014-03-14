@@ -27,14 +27,14 @@ def prisoner_action(i, dead, declared, ahead):
 
 # Don't change any code beyond this line. This is the bookkeeping of the simulation.
 
-prisoners = [random.random() < ratio for r in xrange(n)]
+prisoners = [random.random() < ratio for r in range(n)]
 ahead = copy.copy(prisoners)
 dead = []
 declared = []
 num_dead = 0
 
 # The game loop
-for i in xrange(n):
+for i in range(n):
     ahead.pop(0)
     declaration = prisoner_action(i, dead, declared, ahead)
     declared.append(declaration)
@@ -42,9 +42,9 @@ for i in xrange(n):
     if (declaration != prisoners[i]):
         num_dead += 1
 
-print 'Out of {0} prisoners, you killed {1}.'.format(n, num_dead)
+print('Out of {0} prisoners, you killed {1}.'.format(n, num_dead))
 if (num_dead > 1):
-    print 'You can do better than that!'
+    print('You can do better than that!')
 else:
-    print 'Great job! You found the right algorithm!'
+    print('Great job! You found the right algorithm!')
 
