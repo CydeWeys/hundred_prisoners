@@ -25,24 +25,25 @@ function prisonerAction(i, dead, declared, ahead) {
 }
 
 // Don't change any code beyond this line. This is the bookkeeping of the simulation.
+(function run() {
+  var prisoners = Array.apply(null, new Array(n)).map(function() { return Math.random() < ratio; });
+  var ahead = Array.prototype.concat([], prisoners);
+  var dead = [];
+  var declared = [];
 
-var prisoners = Array.apply(null, new Array(n)).map(function() { return Math.random() < ratio; });
-var ahead = Array.prototype.concat([], prisoners);
-var dead = [];
-var declared = [];
+  // The game loop
+  for(var i = 0; i < n; i++) {
+    ahead.pop(0);
+    var declaration = prisonerAction(i, dead, declared, ahead);
+    declared.push(declaration);
+    dead.push(declaration !== prisoners[i]);
+  }
 
-// The game loop
-for(var i = 0; i < n; i++) {
-  ahead.pop(0);
-  var declaration = prisonerAction(i, dead, declared, ahead);
-  declared.push(declaration);
-  dead.push(declaration !== prisoners[i]);
-}
-
-var numDead = dead.filter(Boolean).length;
-console.log('Out of %d prisoners, you killed %d.', n, numDead);
-if (numDead > 1 || dead.slice(1).filter(Boolean).length) {
-  console.log('You can do better than that!');
-} else {
-  console.log('Great job! You found the right algorithm!');
-}
+  var numDead = dead.filter(Boolean).length;
+  console.log('Out of %d prisoners, you killed %d.', n, numDead);
+  if (numDead > 1 || dead.slice(1).filter(Boolean).length) {
+    console.log('You can do better than that!');
+  } else {
+    console.log('Great job! You found the right algorithm!');
+  }
+})();
