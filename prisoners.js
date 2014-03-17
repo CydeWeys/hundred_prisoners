@@ -33,7 +33,7 @@ function prisonerAction(i, dead, declared, ahead) {
 
   // The game loop
   for(var i = 0; i < n; i++) {
-    ahead.pop(0);
+    ahead.shift();
     var declaration = prisonerAction(i, dead, declared, ahead);
     declared.push(declaration);
     dead.push(declaration !== prisoners[i]);
